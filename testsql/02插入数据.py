@@ -1,7 +1,7 @@
 
 import sqlite3
 
-con=sqlite3.connect('d:/Pycharmprojects/test.db')
+con=sqlite3.connect('d:/GitHub/test1.db')
 
 print(con)
 
@@ -10,7 +10,7 @@ cur=con.cursor()#游标对象
 sql='insert into t_person(pname,age) values(?,?)'
 
 try :
-    cur.executemany(sql,[('zxl',21),('lxn',21),('张淼鑫',21)])
+    cur.executemany(sql,[('张起灵',21),('张启山',21),('张海琪',21)])
     #cur.execute(sql,('张三',24))
     con.commit()
     print('插入成功')

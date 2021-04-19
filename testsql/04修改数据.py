@@ -1,7 +1,7 @@
 
 import sqlite3
 
-con=sqlite3.connect('d:/Pycharmprojects/test.db')
+con=sqlite3.connect('d:/GitHub/test1.db')
 
 
 cur=con.cursor()
