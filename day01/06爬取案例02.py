@@ -26,20 +26,20 @@ def save_html(filename,a):
 
 
 def main ():
-    content=input('请输入下载内容:')
+    #content=input('请输入下载内容:')
     num=input('请输入下载多少页:')
-    base_url1='https://tieba.baidu.com/f?ie=utf-8&{}'
+    base_url1='https://tieba.baidu.com/f?kw=%E7%9F%B3%E5%8E%9F%E9%87%8C%E7%BE%8E&ie=utf-8&pn=50'
 
-    for pn in range(int(num)):
-        args={
-            'pn':pn*50,
-            'kw':content
-        }
-        filename = '第' + str(pn+1) + '页.html'
-        args=urlencode(args)
-        print('正在下载'+filename)
-        b=get_html(base_url1.format(args))
-        save_html(filename,b)
+    # for pn in range(int(num)):
+    #     args={
+    #         'pn':pn*50,
+    #         'kw':content
+    #     }
+    filename = '第' + str(num+1) + '页.html'
+    #args=urlencode(args)
+    print('正在下载'+filename)
+    b=get_html(base_url1)#.format(args)
+    save_html(filename,b)
         #print(base_url1.format(args))
         #get_html('https://tieba.baidu.com/f?ie=utf-8&kw=%E7%9F%B3%E5%8E%9F%E9%87%8C%E7%BE%8E&fr=search')
 
