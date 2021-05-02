@@ -26,10 +26,13 @@ for tit in title:
     response2=requests.get(ur,headers).text
 
     f_img=parsel.Selector(response2)
-    #再次解析
+    #再次解析//*[@id="post_content_139079422988"]/img[4]
+    #/html/body/div[4]/div/div/div[2]/div/div[4]/div[1]/div[3]/div/div[3]/div[1]/cc/div[2]/img[4]
     img_data=f_img.xpath('//cc/div/img[@class="BDE_Image"]/@src').getall()
-    print(img_data)
-
-    for data in img_data:
-        print(data)
-        pipelines.process_item(data)
+    imgd=f_img.xpath('//*[@id="post_content_139079422988"]/img[4]/@src').getall()
+    print(imgd)
+    # print(img_data)
+    #
+    # for data in img_data:
+    #     print(data)
+    #     pipelines.process_item(data)
