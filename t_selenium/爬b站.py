@@ -40,16 +40,14 @@ html_element=etree.HTML(u)
 #     print(i)
 for item in list:
     title=item.find('a').get('title')
-    url=item.find('a').get('href')
-    #img=item.find('a',class_='lazy-img')
-    #v_img=html_element.xpath('//*[@id="all-list"]/div[1]/div[2]/ul/li[1]/a/div/div[1]/@img').getall()
-    v_im=html_element.xpath('//*[@id="all-list"]/div[1]/div[2]/ul/li[1]/a/div/div[1]/img/@src').getall()
+    #url=item.find('a').get('href')
+    #img=html_element.xpath('//*[@id="all-list"]/div[1]/div[2]/ul/li[1]/a/div/div[1]/img/@src')[0]
     play_number=item.find('i',class_='icon-playtime')#//*[@id="all-list"]/div[1]/div[2]/ul/li[1]/div/div[3]/span[1]/text()
-    play_time=html_element.xpath('//*[@id="all-list"]/div[1]/div[2]/ul/li[1]/div/div[3]/span[1]/text()')[0].strip()
+    #play_time=html_element.xpath('//*[@id="all-list"]/div[1]/div[2]/ul/li[1]/div/div[3]/span[1]/text()')[0].strip()
     print(play_number.get_text())
-    print(play_time)
+    #print(play_time)
     print(title)
-    print('https:'+url)
-    print('https:'+v_im)
+    #print('https:'+url)
+    #print('https:'+img)
 
 

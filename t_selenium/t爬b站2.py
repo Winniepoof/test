@@ -1,32 +1,30 @@
 import parsel
 import requests
 from fake_useragent import UserAgent
-from bs4 import BeautifulSoup
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium import webdriver
+from lxml import etree
 
 
-url='https://search.bilibili.com/all?keyword=%E5%A5%B3%E5%84%BF%E5%9B%BD%E6%9C%B1%E7%90%B3&from_source=webtop_search&spm_id_from=333.851'
-headers={'UserAgent':UserAgent().chrome}
-response=requests.get(url,headers=headers).text
+url=webdriver.Chrome()
+url.get('https://search.bilibili.com/all?keyword=%E5%A5%B3%E5%84%BF%E5%9B%BD%E6%9C%B1%E7%90%B3&from_source=webtop_search&spm_id_from=333.851')
+
+source=url.page_source
+print(source)
+html_sourse=etree.HTML(source)
+
+v_img=html_sourse.xpath('//*[@id="all-list"]/div[1]/div[2]/ul/li[1]/a/div/div[1]/img/@src')[0]
+print('https:'+v_img)
+
+
+
+# headers={'UserAgent':UserAgent().chrome}
+# response=requests.get(url,headers=headers).text
 #print(response)
 #print(response)
-html=parsel.Selector(response)
-#print(html)
 
-soup=BeautifulSoup(response,'lxml')
-#print(soup)
-videos=soup.find_all('li',class_='video-item matrix')
-print(videos)
-
-for video in videos:
-    title=video.find('a').get('title')
-    url=video.find('a').get('href')
-    img=video.find('a').get('src')
-    print(title)
-    print(url)
-    print(img)
-
-
-
+#html=parsel.Selector(response)
+# print(html)
 # title=html.xpath('//*[@id="all-list"]/div[1]/div[2]/ul/li[1]/div/div[1]/a/@title').getall()
 # ur=html.xpath('//*[@id="all-list"]/div[1]/div[2]/ul/li[1]/div/div[1]/a/@href').getall()
 # v_im=html.xpath('/html/body/div[3]/div/div[2]/div/div[1]/div[2]/ul/li[1]/a/div/div[1]/img').getall()
