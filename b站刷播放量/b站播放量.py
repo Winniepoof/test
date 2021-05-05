@@ -10,25 +10,25 @@ headers = {
     'accept-language': 'zh-CN,zh;q=0.9',
     'accept-encoding': 'gzip, deflate, br',
     'origin': 'https://www.bilibili.com',
-    'Connection': 'keep-alive',
+    #'Connection': 'keep-alive',
     'referer': 'https://www.bilibili.com/video/BV1u4411Q7Xw',
-    "cookie": "_uuid=1B08AB27-5C0B-E477-1C08-9B25225B4FB442216infoc; buvid3=24D9972A-3808-4BE8-A778-33C2AD07B96753952infoc; rpdid=|(uYmmullJRJ0J'ul)m~|RYml; CURRENT_FNVAL=80; LIVE_BUVID=AUTO5116018050424022; buvid_fp=24D9972A-3808-4BE8-A778-33C2AD07B96753952infoc; SESSDATA=a8541c98%2C1629361087%2Cc52a0%2A21; bili_jct=db92495d12f13bcc28b6a21c7d9f1e6e; DedeUserID=401425662; DedeUserID__ckMd5=610383d5b5d06845; sid=9p121mhm; blackside_state=1; CURRENT_QUALITY=0; fingerprint3=f5c08d3b5948d11826e86bac814005d0; fingerprint=d3407312651e0e65ba636f9f44f77714; fingerprint_s=0f5cfb36874876ce84828d51b92e4b81; buvid_fp_plain=24D9972A-3808-4BE8-A778-33C2AD07B96753952infoc; bp_t_offset_401425662=520600845743032189; bp_video_offset_401425662=520810319889746427; PVID=6; bsource=search_baidu; bfe_id=cade757b9d3229a3973a5d4e9161f3bc",
+    "cookie": "_uuid=1B08AB27-5C0B-E477-1C08-9B25225B4FB442216infoc; buvid3=24D9972A-3808-4BE8-A778-33C2AD07B96753952infoc; rpdid=|(uYmmullJRJ0J'ul)m~|RYml; CURRENT_FNVAL=80; LIVE_BUVID=AUTO5116018050424022; buvid_fp=24D9972A-3808-4BE8-A778-33C2AD07B96753952infoc; SESSDATA=a8541c98%2C1629361087%2Cc52a0%2A21; bili_jct=db92495d12f13bcc28b6a21c7d9f1e6e; DedeUserID=401425662; DedeUserID__ckMd5=610383d5b5d06845; sid=9p121mhm; blackside_state=1; CURRENT_QUALITY=0; fingerprint3=f5c08d3b5948d11826e86bac814005d0; fingerprint=d3407312651e0e65ba636f9f44f77714; fingerprint_s=0f5cfb36874876ce84828d51b92e4b81; buvid_fp_plain=24D9972A-3808-4BE8-A778-33C2AD07B96753952infoc; bp_t_offset_401425662=520600845743032189; bp_video_offset_401425662=520810319889746427; PVID=14; bfe_id=393becc67cde8e85697ff111d724b3c8",
     #"_uuid=3A318514-7B21-7F9B-715D-5358FA315D0D11914infoc; buvid3=7B7F7CFF-E0CE-4317-AC2C-C8ADF975289253920infoc; sid=9sbfkfld; CURRENT_FNVAL=16; rpdid=|(uYm~YJm))l0J'ul))R)u~YJ; LIVE_BUVID=AUTO6015884836169069; CURRENT_QUALITY=80; bp_t_offset_35906556=392132580010163986; PVID=3; DedeUserID=35906556; DedeUserID__ckMd5=6bc77a6b9c4d788a; SESSDATA=c7a7e24c%2C1605943181%2C95472*51; bili_jct=d263a22829f9bad2b775aa9813ccf5d1; bp_video_offset_35906556=393915923444549998; bfe_id=da609d6ad479671e4cd33f2670c43937",
 
 }
 stime = str(int(time.time()))
 #获取我们要刷这个视频的data数据
 data= {
-    'aid':'63325855',
+    #'aid':'63325855',
     'cid':'109974192',
     "bvid": "BV1u4411Q7Xw",
-    'part':'1',
-    'mid':'401425662',
-    'lv':'5',
-    "stime" :stime,
+    #'part':'1',
+    #'mid':'401425662',
+    #'lv':'5',
+    #"stime" :stime,
     'jsonp':'jsonp',
-    'type':'3',
-    'sub_type':'0',
+    #'type':'3',
+    #'sub_type':'0',
 }
 
 ip_list=['27.159.189.198','49.87.83.231','117.29.242.85']
@@ -49,7 +49,8 @@ def get_html(url,proxies):
             #发起一个post请求，去请求这个页面，从而获得一次点击量
             print(1)
             header={'User-Agent':headers}
-            req = requests.get(url,data=data,headers=headers)#post  ,proxies=proxies
+            #requests.packages.urllib3.disable_warnings()
+            req = requests.get(url,data=data,headers=headers,proxies=proxies)#post  ,proxies=proxies
             print(2)
             count += 1
             print("now in loop {}".format(count))
