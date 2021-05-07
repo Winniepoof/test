@@ -9,7 +9,8 @@ sql='''create table good(
         g_on INTEGER primary key autoincrement,     
         g_title VARCHAR not null,
         g_price VARCHAR not null,
-        g_shop VARCHAR not null
+        g_shop VARCHAR not null,
+        g_url VARCHAR not null
         )
 '''
 #g_on INTEGER primary key autoincrement,

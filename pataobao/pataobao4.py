@@ -10,13 +10,14 @@ from config import *
 from pymongo import MongoClient
 import pipline
 import time
+import re
 
 url=webdriver.Chrome()
 url.get('https://nanzhuang.tmall.com/?spm=875.7931836/B.category2016011.1.5cc14265ABwt41&acm=lb-zebra-148799-667863.1003.4.708026&scm=1003.4.lb-zebra-148799-667863.OTHER_14561677576501_708026')
 
 #wait=WebDriverWait(url,10)##mx_5 > ul > li:nth-child(1) #innerSearchGoodList > div:nth-child(2)
 #wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, '#innerSearchGoodList > div>div')))
-time.sleep(10)
+time.sleep(6)
 html = url.page_source
 doc = pq(html)
 print(doc)##innerSearchGoodList > div:nth-child(2) > div:nth-child(2)
@@ -31,7 +32,7 @@ print(items)
 
 for item in items:
     # print(2)
-    # print(item)
+    print(item)
     # print(3)
     good=[]
     title= item.find('.itemTitle').text()
@@ -39,11 +40,27 @@ for item in items:
     price=item.find('.itemPrice').text()
     good.append(str(price))
     shop=item.find('.shopTitle').text()
+    good.append(str(shop))
+    imgs=item.find('.itemCover').attr('style')
+    imgs=str(imgs)
+    a = re.compile("'(.*)'")
+    img=a.findall(imgs)
+    img=''.join(img)
+    img='https:'+img
+    good.append(img)
+    #img = re.sub(r"/\((.+?)\)/g", "", imgs)
+    # p1 = re.compile(r"[(](.*?)[)]", re.S)
+    # img_l=re.findall(p1,imgs)
+    # img=''.join(img_l)
+    # img=str(img)
+
+    # a=img[1]
+    # print(a)
     # print(title)
     # print(price)
     # print(shop)
-    good.append(str(shop))
-    print(good)
+    #print(good)
+    print(img)
     # product = {
     #     'title': item.find('.itemTitle').text(),
     #     #'detial_url': item.find('.title .J_ClickStat').attr('href'),
@@ -61,5 +78,5 @@ for item in items:
 
 
 
-# url.close()
-# url.quit()
+url.close()
+url.quit()

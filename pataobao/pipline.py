@@ -6,10 +6,10 @@ def savesql(product):
     con=sqlite3.connect('d:/GitHub/tspider.db')
     #print(con)
     cur=con.cursor()#游标对象
-    sql='insert into good(g_title,g_price,g_shop) values(?,?,?)'
+    sql='insert into good(g_title,g_price,g_shop,g_url) values(?,?,?,?)'
 
     try :
-        cur.executemany(sql,[(product[0],product[1],product[2],)])
+        cur.executemany(sql,[(product[0],product[1],product[2],product[3],)])
         #cur.execute(sql,('张三',24))
         con.commit()
         print('插入成功')
