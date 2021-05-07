@@ -7,6 +7,6 @@ c=redis.Redis(
 
 c.set('country','英国')
 c.set('city','伦敦')
-city=c.get('city').decode('utf-8')
-print(city)
-del c
+#city=c.get('city').decode('utf-8')
+#print(city)
+#del c

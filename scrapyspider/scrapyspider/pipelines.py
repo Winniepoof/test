@@ -11,7 +11,7 @@ import pymysql
 
 class ScrapyspiderPipeline:
     def process_item(self, item, spider):
-        db=pymysql.connect(host='localhost',user='root',password='root',db='spidertaobao',charset='utf-8')
+        db=pymysql.connect(host='localhost',user='root',password='waite1314',db='tspider',charset='utf-8')
         cursor=db.cursor()
 
         name = item['name'][0]

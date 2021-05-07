@@ -1,26 +1,35 @@
-# import sys
-# sys.path.append("..")
-import scrapy
-# from scrapyspider.scrapyspider.items import ScrapyspiderItem
-from ..items import ScrapyspiderItem
+import parsel
+import requests
+from fake_useragent import UserAgent
+from bs4 import BeautifulSoup
+import lxml
 
-#scrapy crawl clothes
+url='https://nanzhuang.tmall.com/?spm=875.7931836/B.category2016011.1.659c42654j078q&acm=lb-zebra-148799-667863.1003.4.708026&scm=1003.4.lb-zebra-148799-667863.OTHER_14561677576501_708026'
+header={'UserAgent':UserAgent().chrome}
+response=requests.get(url,headers=header).text
+#print(response)
 
-class taobao(scrapy.Spider):
-    name='clothes'
-    allowed=['taobao.com']
-    start_urls=['https://uland.taobao.com/sem/tbsearch?refpid=mm_26632258_3504122_32538762&keyword=%E5%A5%B3%E8%A3%85&clk1=47577b64c9afa844e095a9ff765a0547&upsId=47577b64c9afa844e095a9ff765a0547']
 
-    def parse(self,response):
-        clothes=response.xpath('//u1[@class="pc-items-item item-undefined"]/li')
-        print(clothes)
-        for clothe in clothes:
-            item=ScrapyspiderItem()
-            item['name']=clothe.xpath('./a[@class="pc-items-item-title pc-items-item-title-row2"]/@title-text').extract()
-            item['coupon_price']=clothe.xpath('./a[@class="price-con"]/@coupon-price-afterCoupon').extract()
-            item['old_price']=clothe.xpath('./a[@class=""]/@coupon-price-old').extract()
-            item['seller'] = clothe.xpath('./a[@class="seller-info"]/@atbfont seller-icon').extract()
-            item['sell_num'] = clothe.xpath('./a[@class="item-footer"]/@sell-info').extract()
-            item['img'] = clothe.xpath('./a[@class="pc-items-item-img img-loaded"]/@src').extract()
+soup=BeautifulSoup(response,'lxml')
+#print(soup)
 
-            yield item
+#items=soup.find_all('li',class_='pc-items-item item-undefined')
+items=soup.find_all(class_='item')
+for item in items:
+    print(item)
+    title=item.find(class_='itemTitle')
+    print(title)
+
+
+
+
+# html=parsel.Selector(response)
+# img = html.xpath('./a[@class="pc-items-item-img img-loaded"]/@src').extract()
+#name=html.xpath('//*[@id="mx_5"]/ul/li[1]/a/div[1]/span/text()')#'./a[@class="pc-items-item-title pc-items-item-title-row2"]/@title-text'
+# coupon_price=html.xpath('./a[@class="price-con"]/@coupon-price-afterCoupon').extract()
+# old_price=html.xpath('./a[@class=""]/@coupon-price-old').extract()
+# seller= html.xpath('./a[@class="seller-info"]/@atbfont seller-icon').extract()
+# sell_num= html.xpath('./a[@class="item-footer"]/@sell-info').extract()
+#adress=()
+
+#print(name)

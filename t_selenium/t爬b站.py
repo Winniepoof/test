@@ -9,7 +9,7 @@ headers={'UserAgent':UserAgent().chrome}
 response=requests.get(url,headers=headers).text
 #print(response)
 #print(response)
-html=parsel.Selector(response)
+#html=parsel.Selector(response)
 #print(html)
 
 soup=BeautifulSoup(response,'lxml')
