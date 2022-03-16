@@ -7,20 +7,20 @@ from lxml import etree
 
 urlS=webdriver.Chrome()
 urlS.get('http://www.bilibili.com/')
-
 p=urlS.current_url
 print(p)
 
-Wait=WebDriverWait(urlS,10)
-
-inputs=Wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="nav_searchform"]/input')))
-botton=Wait.until(EC.element_to_be_clickable((By.XPATH,'//*[@id="nav_searchform"]/div/button')))
-index = Wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="nav_searchform"]/input')))
-
-index.click()
-inputs.send_keys('女儿国朱琳')
+Wait=WebDriverWait(urlS,3)
+#//*[@id="nav-searchform"]/div/button
+inputs=Wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="nav-searchform"]/div[1]/input')))
+botton=Wait.until(EC.element_to_be_clickable((By.XPATH,'//*[@id="nav-searchform"]/div[2]')))
+#//*[@id="nav-searchform"]/div[2]
+#index = Wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="nav-searchform"]/div[1]/input')))
+#//*[@id="nav-searchform"]/div[1]/input
+#index.click()
+inputs.click()
+inputs.send_keys('python')
 botton.click()
-
 all_w=urlS.window_handles
 urlS.switch_to.window(all_w[1])
 u=urlS.page_source

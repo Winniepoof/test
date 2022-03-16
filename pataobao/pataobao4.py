@@ -1,5 +1,3 @@
-import re
-
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
@@ -71,12 +69,12 @@ for item in items:
     # }
     #print(product)
     #print(len(good[0]))
-    if len(good[0])!=0:
-        pipline.savesql(good)
-    else:
-        continue
+    # if len(good[0])!=0:
+    #     pipline.savesql(good)
+    # else:
+    #     continue
 
 
-
+time.sleep(20)
 url.close()
 url.quit()

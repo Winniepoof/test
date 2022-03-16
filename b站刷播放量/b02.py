@@ -46,7 +46,7 @@ def bil_views(url):
     # chrome_options.add_argument('--headless')
     ua = random.choice(USER_AGENT)
     ip=random.choice(proxy_arr)
-    chrome_options.add_argument("--proxy-server=%s" %ip)#'--user-agent=%s' %ua,
+    chrome_options.add_argument('--user-agent=%s' %ua)#'--user-agent=%s' %ua,"--proxy-server=%s" %ip
 
     # 代码
     browser = webdriver.Chrome(options=chrome_options)
@@ -92,4 +92,4 @@ def bil_views(url):
 if __name__ == "__main__":
     # 播放100次
     for i in range(5):
-        bil_views("https://www.bilibili.com/video/BV1u4411Q7Xw")
+        bil_views("https://www.bilibili.com/video/BV1oh411m7ad/")

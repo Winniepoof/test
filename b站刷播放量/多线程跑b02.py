@@ -1,6 +1,5 @@
 import b02
 import threading
-
 def multi_b():
     print('start')
     threads=[]
@@ -9,14 +8,10 @@ def multi_b():
         threads.append(
             threading.Thread(target=b02.bil_views,args=(url,))
         )
-
     for thread in threads:
         thread.start()
-
     for thread in threads:
         thread.join()
-
     print('end')
-
 if __name__ == '__main__':
     multi_b()

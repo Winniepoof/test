@@ -9,18 +9,18 @@ import time
 #--proxy-server=  111.26.180.102  117.29.242.85  103.121.210.84
 proxy_arr = [
     #'111.26.180.82',
-    #'https://111.26.180.82',
-    #'https://103.121.210.84',
+    'https://111.26.180.82',
+    # 'https://103.121.210.84',
     # 'https://36.56.101.120',
-    #'https://114.233.171.250',
+    # 'https://114.233.171.250',
     # 'https://49.85.188.222',
     # 'https://1.70.67.20',
     # 'https://114.98.173.85',
     # 'https://49.85.188.242',
-    'https://117.64.236.75',
-    'https://27.156.197.102',
-    'https://121.226.215.247',
-    'https://180.119.95.119',
+    #'https://117.64.236.75',
+    # 'https://27.156.197.102',
+    # 'https://121.226.215.247',
+    # 'https://180.119.95.119',
     # 'https://49.85.188.222',
     # 'https://61.130.194.136',
     # 'https://1.70.67.86'
@@ -54,16 +54,40 @@ def bz(i):
     browser = webdriver.Chrome(options=chrome_options)  # options=chrome_options
     print(i)
     browser.delete_all_cookies()
-    browser.get("https://www.bilibili.com/video/BV1u4411Q7Xw")
+    browser.get("https://www.bilibili.com/video/BV1oh411m7ad/")
     time.sleep(5)
+
+    try:
+        path = '//*[@id="bilibiliPlayer"]/div[1]'
+        browser.find_element_by_xpath(path)
+        time.sleep(1)
+        print('控件抓取成功1')
+    except Exception:
+        try:
+            path = '//*[@id="bilibiliPlayer"]/p[1]/p[1]/p[9]/p[2]/p[2]/p[1]/p[1]/button[1]'
+            browser.find_element_by_xpath(path)
+            time.sleep(1)
+            print('控件抓取成功2')
+        except Exception:
+            path = '//*[@id="bilibiliPlayer"]/p[1]/p[1]/p[9]/video'
+            browser.find_element_by_xpath(path)
+            time.sleep(1)
+            print('控件抓取成功3')
+
+    # 2倍速播放
+    js_2 = '''document.querySelector('video').playbackRate=2'''
+    browser.execute_script(js_2)  # 执行js的方法
+    # 播放
+    browser.find_element_by_xpath(path).click()
     Wait = WebDriverWait(browser, 100)
+
     player = Wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="bilibiliPlayer"]/div[1]')))
     #ti=Wait.until(EC.element_to_be_clickable((By.XPATH,'//*[@id="viewbox_report"]/h1/span')))
-    player.click()
+    #player.click()
     print(browser.get_cookies())
     # time.sleep(5)
     # ti.click()
-    time.sleep(2)
+    time.sleep(10)
     browser.close()
     browser.quit()
     #time.sleep(5)
