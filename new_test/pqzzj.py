@@ -16,7 +16,7 @@ doc = pq(html)
 print(doc)##innerSearchGoodList > div:nth-child(2) > div:nth-child(2)
 print('----------------------------------------------------------------------------------------------')
 print (doc.text())
-items=doc('data-ename').items()
+items=doc('data_analyse-ename').items()
 ##innerSearchGoodList > div>div
 #//*[@id="c_portalResIntro_category-15605002629503772"]/div/div/div[2]/div[2]/div[1]/a
 print(items)

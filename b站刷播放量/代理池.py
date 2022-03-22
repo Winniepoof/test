@@ -22,8 +22,8 @@ def parse_html(html):
     soup = etree.HTML(html.text)
     trs = soup.xpath('//div[@id = "list"]/table/tbody/tr')
     for tr in trs:
-        ip = tr.xpath('./td[@data-title = "IP"]/text()')[0]
-        port = tr.xpath('./td[@data-title = "PORT"]/text()')[0]
+        ip = tr.xpath('./td[@data_analyse-title = "IP"]/text()')[0]
+        port = tr.xpath('./td[@data_analyse-title = "PORT"]/text()')[0]
         if ip and port:
             daili = ip + ":" + port
             #构建一个代理池来检测IP地址是否能用

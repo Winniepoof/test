@@ -33,6 +33,6 @@ for tit in title:
     print(imgd)
     # print(img_data)
     #
-    # for data in img_data:
-    #     print(data)
-    #     pipelines.process_item(data)
+    # for data_analyse in img_data:
+    #     print(data_analyse)
+    #     pipelines.process_item(data_analyse)
